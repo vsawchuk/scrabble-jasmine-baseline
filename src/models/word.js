@@ -39,6 +39,26 @@ var Word = Backbone.Model.extend({
     }
   },
 
+  // Regarding validations in Backbone:
+  //
+  // The .validate() method should inspect the current state
+  // of the model, and return an error string if it is invalid.
+  // The returned error string will be stored in the model's
+  // .validationError property. If the model is valid, .validate()
+  // should return nothing.
+  //
+  // The .validate() method will only be run automatically
+  // when the model is about to be sent to the serve, i.e.
+  // when .save() is called. This behavior is similar to
+  // what we encountered in Rails, the difference being in
+  // backbone we're much more likely to have models sitting
+  // around in memory without persisting them.
+  //
+  // To run validations manually, you can use the .isValid()
+  // method, which returns true or false. If you need to know
+  // why the model isn't valid, check out .validationError.
+  // See ApplicationView.playWord() for an example of this workflow,
+  // and http://backbonejs.org/#Model-validate for documentation.
   validate: function() {
     var text = this.get('text');
 

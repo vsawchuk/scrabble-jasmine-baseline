@@ -51,6 +51,8 @@ var ApplicationView = Backbone.View.extend({
     var text = this.newWordInput.val();
     var word = new Word({ text: text });
 
+    // Run this model's validations. See Word.validate()
+    // for more information.
     if (word.isValid()) {
       this.newWordInput.val('');
       this.model.add(word);
