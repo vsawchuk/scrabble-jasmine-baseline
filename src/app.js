@@ -5,10 +5,7 @@ import WordList from 'collections/word_list';
 import ApplicationView from 'views/application_view';
 
 $(document).ready(function() {
-  var wordList = new WordList([
-    { text: 'pig' },
-    { text: 'goat' }
-  ]);
+  var wordList = new WordList();
   var application = new ApplicationView({
     model: wordList,
     el: $('#application')

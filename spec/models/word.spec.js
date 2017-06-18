@@ -74,15 +74,15 @@ describe('Word', function() {
 
   describe('score', function() {
     it ('Correctly scores simple words', function() {
-
+      // TODO
     });
 
     it ('Adds 50 points for a 7-letter word', function() {
-
+      // TODO
     });
 
     it ('Returns undefined if the word is invalid', function() {
-
+      // TODO
     });
   });
 });
