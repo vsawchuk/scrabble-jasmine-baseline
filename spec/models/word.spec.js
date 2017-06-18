@@ -2,15 +2,6 @@
 import _ from 'underscore';
 import Word from 'models/word';
 
-// word -> expected score
-const VALID_WORDS = {
-  'f': 4,
-  'dog': 5,
-  'pig': 6,
-  'goat': 5,
-  'swizzle': 78 // https://en.wikipedia.org/wiki/Pointer_swizzling
-}
-
 describe('Word', function() {
   describe('constructor', function() {
     it('Tracks text', function() {
@@ -28,7 +19,7 @@ describe('Word', function() {
 
   describe('validate', function() {
     it ('permits valid words', function() {
-      _.mapObject(VALID_WORDS, (score, text) => {
+      _.each(['f', 'dog', 'pig', 'goat', 'swizzle'], (text) => {
         var word = new Word({ text: text });
         expect(word.isValid()).toBeTruthy('word: ' + text + ', error: ' + word.validationError);
       });
@@ -78,6 +69,20 @@ describe('Word', function() {
       _.each(words, (word) => {
         expect(word.isValid()).toBeFalsy('word: ' + word.get('text'));
       });
+    });
+  });
+
+  describe('score', function() {
+    it ('Correctly scores simple words', function() {
+
+    });
+
+    it ('Adds 50 points for a 7-letter word', function() {
+
+    });
+
+    it ('Returns undefined if the word is invalid', function() {
+
     });
   });
 });
