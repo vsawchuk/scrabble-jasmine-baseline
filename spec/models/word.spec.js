@@ -7,7 +7,7 @@ const SIMPLE_WORDS = {
   'dog': 5,
   'pig': 6,
   'goat': 5,
-  'swizzle': 28 // https://en.wikipedia.org/wiki/Pointer_swizzling
+  'swizzle': 78 // https://en.wikipedia.org/wiki/Pointer_swizzling
 }
 
 describe('Word', function() {
@@ -20,11 +20,18 @@ describe('Word', function() {
 
   describe('validate', function() {
     it ('permits valid words', function() {
-      _.mapObject(SIMPLE_WORDS, (key, value) => {
-        var word = new Word({ text: key });
-        expect(word.isValid()).toBeTruthy();
+      _.mapObject(SIMPLE_WORDS, (text, value) => {
+        var word = new Word({ text: text });
+        expect(word.isValid()).toBeTruthy('word: ' + text + ', error: ' + word.validationError);
       });
     });
+
+    it ('permits upper- and lower-case letters', function() {
+      _.each(['dog', 'DOG', 'DoG'], (text) => {
+        var word = new Word({ text: text });
+        expect(word.isValid().toBeTruthy('word: ' + text + ', error: ' + word.validationError));
+      })
+    })
 
     it ('requires text', function() {
       var word = new Word();
