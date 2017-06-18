@@ -2,7 +2,8 @@
 import _ from 'underscore';
 import Word from 'models/word';
 
-const SIMPLE_WORDS = {
+// word -> expected score
+const VALID_WORDS = {
   'f': 4,
   'dog': 5,
   'pig': 6,
@@ -11,16 +12,23 @@ const SIMPLE_WORDS = {
 }
 
 describe('Word', function() {
-  it('Tracks text', function() {
-    var word = new Word({
-      text: "test"
+  describe('constructor', function() {
+    it('Tracks text', function() {
+      var word = new Word({
+        text: "test"
+      });
+      expect(word.get('text')).toEqual('test');
     });
-    expect(word.get('text')).toEqual('test');
+
+    it ('Converts text to lowercase', function() {
+      var word = new Word({ text: 'TeSt' });
+      expect(word.get('text')).toEqual('test');
+    });
   });
 
   describe('validate', function() {
     it ('permits valid words', function() {
-      _.mapObject(SIMPLE_WORDS, (text, value) => {
+      _.mapObject(VALID_WORDS, (score, text) => {
         var word = new Word({ text: text });
         expect(word.isValid()).toBeTruthy('word: ' + text + ', error: ' + word.validationError);
       });
@@ -29,12 +37,17 @@ describe('Word', function() {
     it ('permits upper- and lower-case letters', function() {
       _.each(['dog', 'DOG', 'DoG'], (text) => {
         var word = new Word({ text: text });
-        expect(word.isValid().toBeTruthy('word: ' + text + ', error: ' + word.validationError));
+        expect(word.isValid()).toBeTruthy('word: ' + text + ', error: ' + word.validationError);
       })
     })
 
     it ('requires text', function() {
       var word = new Word();
+      expect(word.isValid()).toBeFalsy();
+    });
+
+    it ('requires text to be a string', function() {
+      var word = new Word({ text: 333 });
       expect(word.isValid()).toBeFalsy();
     });
 

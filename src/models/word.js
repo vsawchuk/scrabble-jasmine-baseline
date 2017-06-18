@@ -30,6 +30,14 @@ const LETTERS = {
 };
 
 var Word = Backbone.Model.extend({
+  initialize: function() {
+    // Always use lowercase letters
+    var text = this.get('text');
+    if (text && typeof text == 'string') {
+      this.set('text', text.toLowerCase());
+    }
+  },
+
   validate: function() {
     var text = this.get('text');
     if (text == '') {
