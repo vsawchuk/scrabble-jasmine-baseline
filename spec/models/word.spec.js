@@ -46,6 +46,9 @@ describe('Word', function() {
       expect(word.isValid()).toBeFalsy();
     });
 
+    // DPR: This is a little pedantic, but it's something I
+    // actually ran into while implementing the front end
+    // so before fixing the problem I added a test
     it ('requires text to be a string', function() {
       var word = new Word({ text: 333 });
       expect(word.isValid()).toBeFalsy();
