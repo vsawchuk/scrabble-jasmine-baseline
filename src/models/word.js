@@ -1,3 +1,4 @@
+import _ from 'underscore';
 import Backbone from 'backbone';
 
 const LETTERS = {
@@ -32,8 +33,27 @@ const LETTERS = {
 var Word = Backbone.Model.extend({
   validate: function() {
     var text = this.get('text');
+
+    if (!text) {
+      return "Word created without text";
+    }
+
     if (text == '') {
       return "Please type a word first";
+    }
+
+    if (text.length > 7) {
+      return "Pleas type a word with 7 or fewer letters";
+    }
+
+    var badChars = []
+    for (let i = 0; i < text.length; i++) {
+      if (!_.has(LETTERS, text[i])) {
+        badChars.push(text[i]);
+      }
+    }
+    if (badChars.length > 0) {
+      return "Invalid characters: " + badChars.join(', ');
     }
   },
 
