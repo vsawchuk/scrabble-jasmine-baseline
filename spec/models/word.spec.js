@@ -3,9 +3,11 @@ import _ from 'underscore';
 import Word from 'models/word';
 
 const SIMPLE_WORDS = {
+  'f': 4,
   'dog': 5,
   'pig': 6,
-  'goat': 5
+  'goat': 5,
+  'swizzle': 28 // https://en.wikipedia.org/wiki/Pointer_swizzling
 }
 
 describe('Word', function() {
@@ -35,6 +37,11 @@ describe('Word', function() {
     });
 
     it ('rejects words > 7 letters', function() {
+      // Boundary condition: 7 letters should work,
+      // 8 should fail
+      var word = new Word({ text: 'abcdefg' });
+      expect(word.isValid()).toBeTruthy();
+
       var word = new Word({ text: 'abcdefgh' });
       expect(word.isValid()).toBeFalsy();
     });
