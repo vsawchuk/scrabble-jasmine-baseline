@@ -22,6 +22,8 @@
     <main id="application">
       <h1>Backbone Scrabble</h1>
       <form id="new-word-form">
+        <section id="word-errors">
+        </section>
         <div class="input-group">
           <input type="text" name="word" class="input-group-field"></input>
           <div class="input-group-button">
@@ -32,8 +34,18 @@
 
       <section id="stats" class="medium-6 small-12 columns">
         <h2>Stats</h2>
-        <p>Total score: <span id="total-score"></span></p>
-        <p>Best word: <span id="best-word"></span></p>
+        <p>
+          <strong>Words Played:</strong>
+          <span id="words-played"></span>
+        </p>
+        <p>
+          <strong>Total score:</strong>
+          <span id="total-score"></span>
+        </p>
+        <p>
+          <strong>Best word:</strong>
+          <span id="best-word"></span>
+        </p>
       </section>
 
       <section id="played-words" class="medium-6 small-12 columns">

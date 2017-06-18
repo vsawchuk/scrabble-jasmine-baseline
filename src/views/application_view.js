@@ -1,5 +1,6 @@
 import Backbone from 'backbone';
 
+import Word from 'models/word';
 import WordView from 'views/word_view';
 
 var ApplicationView = Backbone.View.extend({
@@ -19,6 +20,17 @@ var ApplicationView = Backbone.View.extend({
   },
 
   render: function() {
+    // Stats
+    this.$('#words-played').html(this.model.length);
+    this.$('#total-score').html(this.model.totalScore() + " points");
+    var bestWord = this.model.highestScoringWord();
+    if (bestWord) {
+      this.$('#best-word').html(`"${bestWord.get('text')}" (${bestWord.score()} points)`);
+    } else {
+      this.$('#best-word').html("N/A");
+    }
+
+    // Word list
     this.wordListElement.html('');
 
     this.wordViews.forEach((wordView) => {
@@ -34,11 +46,17 @@ var ApplicationView = Backbone.View.extend({
     event.preventDefault();
     console.log("In playWord");
 
-    var text = this.newWordInput.val();
-    this.newWordInput.val('');
+    this.$('#word-errors').empty();
 
-    if (text) {
-      this.model.add({text: text});
+    var text = this.newWordInput.val();
+    var word = new Word({ text: text });
+
+    if (word.isValid()) {
+      this.newWordInput.val('');
+      this.model.add(word);
+    } else {
+      console.log("error playing word: " + word.validationError)
+      this.$('#word-errors').html(word.validationError);
     }
   },
 

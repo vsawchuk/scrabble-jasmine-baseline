@@ -12,11 +12,13 @@ const WordList = Backbone.Collection.extend({
   },
 
   highestScoringWord: function() {
-
+    // TODO: test and implement
+    return this.at(-1);
   },
-  
-  totalScore: function() {
 
+  totalScore: function() {
+    // TODO: test and implement
+    return 0;
   }
 });
 
