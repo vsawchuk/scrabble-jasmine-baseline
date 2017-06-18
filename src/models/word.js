@@ -43,7 +43,11 @@ var Word = Backbone.Model.extend({
     var text = this.get('text');
 
     if (!text) {
-      return "Word created without text";
+      return "Word created without text (how did this happen?)";
+    }
+
+    if (typeof text != 'string') {
+      return "Text must be a string (how did this happen?)";
     }
 
     if (text == '') {
