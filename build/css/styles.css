@@ -1,0 +1,13 @@
+@font-face {
+    font-family: "Scramble";
+    src: url(scramble/Scramble.ttf) format("truetype");
+}
+
+h1, h2, h3, h4, h5 {
+  font-family: "Scramble", Helvetica;
+}
+
+#new-word-form {
+  margin-left: 5%;
+  margin-right:5%;
+}
