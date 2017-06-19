@@ -2,8 +2,74 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
+    <title>Backbone Scrabble</title>
+    <link rel="stylesheet" href="css/foundation.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <!--
+    Note the "async" attribute on the script tag. This indicates that the
+    script should be fetched asynchronously and executed as soon as it's
+    available. That allows the browser to continue loading HTML while
+    the network request is going on in the background. As long as all
+    our code that references the DOM lives in $(document).ready(), this
+    is a pretty solid way to speed up the initial page load.
+    -->
+    <script src="/app.bundle.js" charset="utf-8" async></script>
   </head>
   <body>
-    <script src="/app.bundle.js" charset="utf-8"></script>
+    <header>
+    </header>
+
+    <main id="application">
+      <h1>Backbone Scrabble</h1>
+      <form id="new-word-form">
+        <section id="word-errors">
+        </section>
+        <div class="input-group">
+          <input type="text" name="word" class="input-group-field"></input>
+          <div class="input-group-button">
+            <input type="submit" value="Play!" class="button"></input>
+          </div>
+        </div>
+      </form>
+
+      <section id="stats" class="medium-6 small-12 columns">
+        <h2>Stats</h2>
+        <p>
+          <strong>Words Played:</strong>
+          <span id="words-played"></span>
+        </p>
+        <p>
+          <strong>Total score:</strong>
+          <span id="total-score"></span>
+        </p>
+        <p>
+          <strong>Best word:</strong>
+          <span id="best-word"></span>
+        </p>
+      </section>
+
+      <section id="played-words" class="medium-6 small-12 columns">
+        <h2>Words</h2>
+        <table id="word-list">
+          <thead>
+            <tr>
+              <th>Word</th>
+              <th>Score</th>
+            </tr>
+          </thead>
+          <tbody>
+          </tbody>
+        </table>
+      </section>
+    </main>
+
+    <footer>
+    </footer>
+
+    <script type="text/template" id="word-template">
+      <td><%- text %></td>
+      <td><%- score %></td>
+    </script>
+
   </body>
 </html>
