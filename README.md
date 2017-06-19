@@ -4,6 +4,8 @@
 
 This project contains an implementation of our classic Scrabble project, this time as a Backbone single-page-application. We'll use it to demonstrate the fundamentals of testing JavaScript with Jasmine. It is built on top of the standard Ada WebPack setup.
 
+This is an individual exercise. Collaboration is of course welcome, but each of you should write your own code. No PR is required for this exercise.
+
 ### Setup
 
 #### Installation
