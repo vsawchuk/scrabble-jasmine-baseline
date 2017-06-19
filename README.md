@@ -8,7 +8,7 @@ This is an individual exercise. Collaboration is of course welcome, but each of 
 
 ### Learning Goals
 - Write tests in JavaScript using Jasmine
-
+- Run a test suite using npm
 
 ### Setup
 
