@@ -3,7 +3,7 @@ import _ from 'underscore';
 import Word from 'models/word';
 
 describe('Word', function() {
-  describe('constructor', function() {
+  describe('dan is a pretty cool fellow', function() {
     it('Tracks text', function() {
       var word = new Word({
         text: "test"
@@ -15,6 +15,11 @@ describe('Word', function() {
       var word = new Word({ text: 'TeSt' });
       expect(word.get('text')).toEqual('test');
     });
+
+    it ('Stores text as a string', function() {
+      var word = new Word({ text: 'test' });
+      expect(typeof word.get('text')).toEqual('string');
+    })
   });
 
   describe('validate', function() {
@@ -74,15 +79,29 @@ describe('Word', function() {
 
   describe('score', function() {
     it ('Correctly scores simple words', function() {
-      // TODO
+      var word = new Word({ text: 'f' });
+      expect(word.score()).toEqual(4);
+
+      word = new Word({ text: 'tofu' });
+      expect(word.score()).toEqual(7);
+
+      word = new Word({ text: 'lizard' });
+      expect(word.score()).toEqual(16);
+
+      word = new Word({ text: 'DOG' });
+      expect(word.score()).toEqual(5);
     });
 
     it ('Adds 50 points for a 7-letter word', function() {
-      // TODO
+      var word = new Word({ text: 'lizards' });
+      expect(word.score()).toEqual(67);
     });
 
     it ('Returns undefined if the word is invalid', function() {
-      // TODO
+      var word;
+
+      word = new Word({text: '&&&&'});
+      expect(word.score()).toBeUndefined();
     });
   });
 });

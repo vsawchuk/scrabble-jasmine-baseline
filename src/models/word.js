@@ -80,7 +80,7 @@ var Word = Backbone.Model.extend({
 
     var badChars = []
     for (let i = 0; i < text.length; i++) {
-      if (!_.has(LETTERS, text[i])) {
+      if (! _.has(LETTERS, text[i])) {
         badChars.push(text[i]);
       }
     }
@@ -90,8 +90,23 @@ var Word = Backbone.Model.extend({
   },
 
   score: function() {
-    // TODO: test and implement
-    return 0;
+    if (!this.isValid()) {
+      return undefined;
+    }
+
+    var text = this.get('text');
+    var points = 0;
+
+    for (var i = 0; i < text.length; i++) {
+      var letter = text[i]
+      points += LETTERS[letter];
+    }
+
+    if (text.length == 7) {
+      points += 50;
+    }
+
+    return points;
   }
 });
 
