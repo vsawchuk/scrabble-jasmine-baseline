@@ -6,7 +6,7 @@ import Backbone from 'backbone';
 // view, ensuring it is only compiled once for the whole
 // program. How does it work? Spend some time reading
 // and see if you can figure it out.
-var wordTemplate = function(data) {
+const wordTemplate = function wordTemplate(data) {
   // If the template hasn't been compiled yet, do so now
   if (!this.template) {
     this.template = _.template($('#word-template').html());
@@ -16,17 +16,17 @@ var wordTemplate = function(data) {
   return this.template(data);
 }.bind({});
 
-var WordView = Backbone.View.extend({
+const WordView = Backbone.View.extend({
   tagName: 'tr',
 
-  initialize: function() {
+  initialize() {
     // We don't expect individual words to ever
     // change, so we can call render immediately
     this.render();
   },
 
-  render: function() {
-    var generatedHtml = wordTemplate({
+  render() {
+    const generatedHtml = wordTemplate({
       text: this.model.get('text'),
       score: this.model.score()
     });
@@ -35,4 +35,3 @@ var WordView = Backbone.View.extend({
 });
 
 export default WordView;
-
