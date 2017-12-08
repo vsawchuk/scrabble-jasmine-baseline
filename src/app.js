@@ -1,12 +1,11 @@
 import $ from 'jquery';
-import _ from 'underscore';
 
-import WordList from 'collections/word_list';
-import ApplicationView from 'views/application_view';
+import WordList from './collections/word_list';
+import ApplicationView from './views/application_view';
 
 $(document).ready(function() {
-  var wordList = new WordList();
-  var application = new ApplicationView({
+  const wordList = new WordList();
+  const application = new ApplicationView({
     model: wordList,
     el: $('#application')
   });

@@ -30,10 +30,10 @@ const LETTERS = {
   'z': 10
 };
 
-var Word = Backbone.Model.extend({
-  initialize: function() {
+const Word = Backbone.Model.extend({
+  initialize() {
     // Always use lowercase letters
-    var text = this.get('text');
+    const text = this.get('text');
     if (text && typeof text == 'string') {
       this.set('text', text.toLowerCase());
     }
@@ -59,8 +59,8 @@ var Word = Backbone.Model.extend({
   // why the model isn't valid, check out .validationError.
   // See ApplicationView.playWord() for an example of this workflow,
   // and http://backbonejs.org/#Model-validate for documentation.
-  validate: function() {
-    var text = this.get('text');
+  validate() {
+    const text = this.get('text');
 
     if (!text) {
       return "Word created without text (how did this happen?)";
@@ -78,7 +78,7 @@ var Word = Backbone.Model.extend({
       return "Pleas type a word with 7 or fewer letters";
     }
 
-    var badChars = []
+    const badChars = []
     for (let i = 0; i < text.length; i++) {
       if (!_.has(LETTERS, text[i])) {
         badChars.push(text[i]);
@@ -89,7 +89,7 @@ var Word = Backbone.Model.extend({
     }
   },
 
-  score: function() {
+  score() {
     // TODO: test and implement
     return 0;
   }
