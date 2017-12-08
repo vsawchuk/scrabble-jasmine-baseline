@@ -96,3 +96,4 @@ var Word = Backbone.Model.extend({
 });
 
 export default Word;
+

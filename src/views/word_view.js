@@ -35,3 +35,4 @@ var WordView = Backbone.View.extend({
 });
 
 export default WordView;
+

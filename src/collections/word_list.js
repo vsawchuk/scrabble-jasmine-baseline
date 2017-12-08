@@ -19,3 +19,4 @@ const WordList = Backbone.Collection.extend({
 });
 
 export default WordList;
+

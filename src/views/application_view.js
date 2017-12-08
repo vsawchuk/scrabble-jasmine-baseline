@@ -1,10 +1,10 @@
 import Backbone from 'backbone';
 
-import Word from 'models/word';
-import WordView from 'views/word_view';
+import Word from '../models/word';
+import WordView from '../views/word_view';
 
-var ApplicationView = Backbone.View.extend({
-  initialize: function() {
+const ApplicationView = Backbone.View.extend({
+  initialize() {
     this.wordListElement = this.$('#word-list tbody');
     this.newWordInput = this.$('#new-word-form input[name=word]');
 
@@ -19,7 +19,7 @@ var ApplicationView = Backbone.View.extend({
     this.listenTo(this.model, 'update', this.render);
   },
 
-  render: function() {
+  render() {
     // Stats
     this.$('#words-played').html(this.model.length);
     this.$('#total-score').html(this.model.totalScore() + " points");
@@ -42,7 +42,7 @@ var ApplicationView = Backbone.View.extend({
     'submit #new-word-form': 'playWord'
   },
 
-  playWord: function(event) {
+  playWord(event) {
     event.preventDefault();
     console.log("In playWord");
 
@@ -62,7 +62,7 @@ var ApplicationView = Backbone.View.extend({
     }
   },
 
-  addWord: function(word) {
+  addWord(word) {
     var wordView = new WordView({
       model: word
     });
