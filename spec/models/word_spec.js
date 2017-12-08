@@ -1,5 +1,4 @@
 // Do not remove
-import _ from 'underscore';
 import Word from 'models/word';
 
 describe('Word', () => {
@@ -21,8 +20,9 @@ describe('Word', () => {
 
   describe('validate', () => {
     it ('permits valid words', () => {
+      const testWords = ['f', 'dog', 'pig', 'goat', 'swizzle'];
 
-      _.each(['f', 'dog', 'pig', 'goat', 'swizzle'], (text) => {
+      testWords.forEach( (text) => {
         const word = new Word({ text: text });
 
         expect(word.isValid()).toBeTruthy('word: ' + text + ', error: ' + word.validationError);
@@ -30,11 +30,12 @@ describe('Word', () => {
     });
 
     it ('permits upper- and lower-case letters', () => {
-      _.each(['dog', 'DOG', 'DoG'], (text) => {
+      const testWords = ['dog', 'DOG', 'DoG'];
+      testWords.forEach((text) => {
         const word = new Word({ text: text });
 
         expect(word.isValid()).toBeTruthy('word: ' + text + ', error: ' + word.validationError);
-      })
+      });
     })
 
     it ('requires text', () => {
@@ -76,7 +77,7 @@ describe('Word', () => {
         new Word({ text: 'aa&bb' }),
         new Word({ text: '123' })
       ];
-      _.each(words, (word) => {
+      words.forEach((word) => {
         expect(word.isValid()).toBeFalsy('word: ' + word.get('text'));
       });
     });
