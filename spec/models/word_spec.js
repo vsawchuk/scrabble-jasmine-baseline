@@ -5,7 +5,7 @@ describe('Word', () => {
   describe('constructor', () => {
     it('Tracks text', () => {
       var word = new Word({
-        text: "test"
+        text: 'test',
       });
 
       expect(word.get('text')).toEqual('test');
@@ -25,7 +25,7 @@ describe('Word', () => {
       testWords.forEach( (text) => {
         const word = new Word({ text: text });
 
-        expect(word.isValid()).toBeTruthy('word: ' + text + ', error: ' + word.validationError);
+        expect(word.isValid()).toBeTruthy(`word: ${text}, error: ${word.validationError}`);
       });
     });
 
@@ -34,7 +34,7 @@ describe('Word', () => {
       testWords.forEach((text) => {
         const word = new Word({ text: text });
 
-        expect(word.isValid()).toBeTruthy('word: ' + text + ', error: ' + word.validationError);
+        expect(word.isValid()).toBeTruthy(`word: ${text}, error: ${word.validationError}`);
       });
     })
 
@@ -78,7 +78,7 @@ describe('Word', () => {
         new Word({ text: '123' })
       ];
       words.forEach((word) => {
-        expect(word.isValid()).toBeFalsy('word: ' + word.get('text'));
+        expect(word.isValid()).toBeFalsy(`word: ${word.get('text')}`);
       });
     });
   });
