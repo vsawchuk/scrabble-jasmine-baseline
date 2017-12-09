@@ -1,4 +1,3 @@
-import _ from 'underscore';
 import Backbone from 'backbone';
 
 const LETTERS = {
@@ -75,12 +74,14 @@ const Word = Backbone.Model.extend({
     }
 
     if (text.length > 7) {
-      return "Pleas type a word with 7 or fewer letters";
+      return "Please type a word with 7 or fewer letters";
     }
 
-    const badChars = []
+    const badChars = [];
+    const validChars = Object.keys(LETTERS);
+
     for (let i = 0; i < text.length; i++) {
-      if (!_.has(LETTERS, text[i])) {
+      if (!validChars.includes(text[i])) {
         badChars.push(text[i]);
       }
     }
