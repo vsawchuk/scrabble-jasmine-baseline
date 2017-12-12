@@ -93,10 +93,8 @@ const Word = Backbone.Model.extend({
   score() {
     if (this.isValid()) {
       const splitWord = this.attributes.text.split('');
-      let score = splitWord.reduce((score, letter) => score + LETTERS[letter], 0);
-      if (splitWord.length === 7) {
-        score += 50;
-      }
+      const bonus = (splitWord.length === 7) ? 50 : 0;
+      let score = splitWord.reduce((score, letter) => score + LETTERS[letter], bonus);
       return score;
     } else {
       return undefined;
