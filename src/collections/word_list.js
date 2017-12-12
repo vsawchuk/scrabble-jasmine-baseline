@@ -5,8 +5,6 @@ import Word from '../models/word';
 const WordList = Backbone.Collection.extend({
   model: Word,
 
-  // Returns the Word model with the highest score, according
-  // to standard tie-breaking rules
   highestScoringWord() {
     // TODO: test and implement
     if (this.models.length === 1) {
@@ -17,21 +15,28 @@ const WordList = Backbone.Collection.extend({
       let maxScore = 0;
       this.models.forEach((word) => {
         const wordLength = word.attributes.text.length;
-        if (word.score() > maxScore) {
+        if (this.isHigherScore(word, maxScore) || ((this.isTie(word, maxScore, maxScoreLength)) && this.isWinningWordLength(wordLength, maxScoreLength))) {
           maxScore = word.score();
           maxScoreLength = wordLength;
           maxScoreWord = word;
-        } else if ((word.score() === maxScore) && (maxScoreLength !== 7)) {
-          if ((wordLength === 7) || (wordLength < maxScoreLength)) {
-            maxScore = word.score();
-            maxScoreLength = wordLength;
-            maxScoreWord = word;
-          }
         }
       });
       return maxScoreWord;
     }
   },
+
+  isHigherScore(newWord, currentHighScore) {
+    return newWord.score() > currentHighScore;
+  },
+
+  isTie(newWord, currentHighScore, currentMaxLength) {
+    return ((newWord.score() === currentHighScore) && (currentMaxLength !== 7));
+  },
+
+  isWinningWordLength(newWordLength, currentMaxLength) {
+    return (newWordLength === 7) || (newWordLength < currentMaxLength);
+  },
+
 
   totalScore() {
     // TODO: test and implement
