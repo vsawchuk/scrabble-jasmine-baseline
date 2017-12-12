@@ -1,5 +1,5 @@
 // Do not remove
-import Word from 'models/word';
+import Word from '../../src/models/word';
 
 describe('Word', () => {
   describe('constructor', () => {
@@ -85,15 +85,34 @@ describe('Word', () => {
 
   describe('score', () => {
     it ('Correctly scores simple words', () => {
-      // TODO
+      const words = [
+        new Word({ text: 'abc' }),
+        new Word({ text: 'ikl' }),
+      ];
+      words.forEach((word) => {
+        expect(word.score()).toEqual(7);
+      });
     });
 
     it ('Adds 50 points for a 7-letter word', () => {
-      // TODO
+      const words = [
+        new Word({ text: 'aaaaaaa' }),
+        new Word({ text: 'eeeeeee' }),
+      ];
+      words.forEach((word) => {
+        expect(word.score()).toEqual(57);
+      });
     });
 
     it ('Returns undefined if the word is invalid', () => {
-      // TODO
+      const words = [
+        new Word({ text: '#&*' }),
+        new Word({ text: 'abc1' }),
+        new Word({ text: '' }),
+      ];
+      words.forEach((word) => {
+        expect(word.score()).toEqual(undefined);
+      });
     });
   });
 });
