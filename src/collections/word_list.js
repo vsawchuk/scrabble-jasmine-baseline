@@ -39,8 +39,11 @@ const WordList = Backbone.Collection.extend({
 
 
   totalScore() {
-    // TODO: test and implement
-    return 0;
+    return this.models.reduce((score, word) =>  {
+      if (word.isValid()) {
+        return score + word.score();
+      }
+    }, 0);
   }
 });
 
